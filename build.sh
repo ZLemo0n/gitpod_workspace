@@ -37,7 +37,7 @@ fi
 fi
 
 export KBUILD_BUILD_USER=AlyZzz
-export KBUILD_BUILD_HOST=lab
+export KBUILD_BUILD_HOST=Lab
 
 if [[ $1 = "-c" || $1 = "--clean" ]]; then
 rm -rf out
@@ -62,3 +62,7 @@ python3 $KERNEL_DIR/mkdtboimg.py create $AK3_DIR/dtbo.img $KERNEL_DIR/out/arch/a
 make
 cd $KERNEL_DIR
 rm -rf out/arch/arm64/boot
+
+BUILD_END=$(date +"%s")
+DIFF=$(($BUILD_END - $BUILD_START))
+echo -e "$yellow Build completed in $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds.$nocol"
